@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import Papa from 'papaparse';
@@ -35,7 +35,6 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [activeFilters, setActiveFilters] = useState([]); // Track active filters in order
   const [filterExpanded, setFilterExpanded] = useState(false); // Track if filter section is expanded
-  const mapRef = useRef(null);
 
   useEffect(() => {
     // Fetch CSV file with Latin-1 encoding and parse it
