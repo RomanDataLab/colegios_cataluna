@@ -33,6 +33,7 @@ function App() {
   const [schools, setSchools] = useState([]);
   const [allSchools, setAllSchools] = useState([]); // Store all schools for filtering
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [activeFilters, setActiveFilters] = useState([]); // Track active filters in order
   const [filterExpanded, setFilterExpanded] = useState(false); // Track if filter section is expanded
 
@@ -147,6 +148,7 @@ function App() {
       })
       .catch(error => {
         console.error('Error fetching CSV:', error);
+        setError('Failed to load school data. Please refresh the page.');
         setLoading(false);
       });
   }, []);
@@ -238,7 +240,6 @@ function App() {
     return null;
   }
 
-
   // Calculate center point (Barcelona area)
   const center = [41.3851, 2.1734]; // Barcelona coordinates
   const zoom = 10;
@@ -247,6 +248,16 @@ function App() {
     return (
       <div className="loading">
         <h2>Loading schools data...</h2>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="loading">
+        <h2>Error</h2>
+        <p>{error}</p>
+        <button onClick={() => window.location.reload()}>Reload Page</button>
       </div>
     );
   }
