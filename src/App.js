@@ -227,6 +227,7 @@ function App() {
   ];
 
   // Map updater component to handle zoom/pan
+  // This component updates the map view when center or zoom changes
   function MapUpdater({ center, zoom }) {
     const map = useMap();
     useEffect(() => {
